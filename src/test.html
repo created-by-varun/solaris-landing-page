@@ -55,50 +55,39 @@
 
 		</div>
 </section>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['line']});
+      google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['college name', 0],
+          [' ',  0],
+          ['Mercurius',  0],
+          ['Venus',  0.1],
+          ['Terra',  0.1],
+          ['Luna',  0.1],
+          ['Mars',  0.1],
+          ['Jupiter',  0.1],
+          ['Saturnus',  0.1],
+          ['Uranus',  0.1],
+          ['Pluto',  0.1],
+          ['Neptunus',  0.1],
+	  [' ',  0]
+        ]);
 
-      var data = new google.visualization.DataTable();
-      data.addColumn('number', 'day');
-      data.addColumn('number', 'score');
-
-      data.addRows([
-        [1,  37.8],
-        [2,  30.9],
-        [3,  25.4],
-        [4,  11.7],
-        [5,  11.9],
-        [6,   8.8],
-        [7,   7.6],
-        [8,  12.3],
-	[9,  16.9],
-        [10, 12.8]
-      ]);
-
-      var options = {
-        chart: {
+        var options = {
           title: 'live score',
-          subtitle: 'in millions of dollars (USD)'
-        },
-        width: 900,
-        height: 500,
-        axes: {
-          x: {
-            0: {side: 'top'}
-          }
-        }
-      };
+          hAxis: {title: 'Team',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
 
-      var chart = new google.charts.Line(document.getElementById('line_top_x'));
-
-      chart.draw(data, google.charts.Line.convertOptions(options));
-    }
-  </script>
-	<div id="line_top_x"></div>
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+   	<div id="chart_div" style="width: 100%; height: 500px;"></div>
 
 <!-- Footer -->
 	<footer class="bg-dark text-white py-3">
