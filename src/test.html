@@ -61,13 +61,16 @@
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 	    
+	        backgroundColor: {
+        fill:'red'     
+        },
 
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['college name', 'score'],
           [' ',  0],
-          ['Mercurius',  1],
+          ['Mercurius',  0],
           ['Venus',  0],
           ['Terra',  0],
           ['Luna',  0],
