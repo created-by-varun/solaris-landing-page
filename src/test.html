@@ -87,9 +87,24 @@
           vAxis: {minValue: 0}
         };
 
-	 	        backgroundColor: {
-        fill:'#17202A'     
-        },
+var chartTextStyle = {};
+if(isDarkMode) {
+	chartTextStyle = {color: '#FFF'};
+}
+///... add these to your chart options
+vAxis: {
+	title: 'US Dollars',
+	textStyle:chartTextStyle,
+	titleTextStyle:chartTextStyle,
+        gridlines: {color: '#787878'}
+},
+hAxis: {
+	textStyle:chartTextStyle,
+	titleTextStyle:chartTextStyle
+},
+legend:{
+	textStyle:chartTextStyle
+}
      
         var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
         chart.draw(data, options);
