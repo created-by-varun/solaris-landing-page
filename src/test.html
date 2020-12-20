@@ -55,35 +55,65 @@
 
 		</div>
 </section>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+<script>
+window.onload = function () {
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['college name', 'score'],
-          [' ',  0],
-          ['CMS',  100],
-          ['cgs',  300],
-          ['ddd',  160]
-        ]);
+var options = {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Actual vs Projected Sales"
+	},
+	axisX:{
+		valueFormatString: "string"
+	},
+	axisY: {
+		title: "Score",
+		suffix: " ",
+		minimum: 30
+	},
+	toolTip:{
+		shared:true
+	},  
+	legend:{
+		cursor:"pointer",
+		verticalAlign: "bottom",
+		horizontalAlign: "left",
+		dockInsidePlotArea: true,
+		itemclick: toogleDataSeries
+	},
+	data: [{
+		type: "line",
+		showInLegend: true,
+		name: "live score",
+		markerType: "square",
+		xValueFormatString: "string",
+		color: "#F08080",
+		yValueFormatString: "###",
+		dataPoints: [
+			{ x: new Date(CMS), y: 63 },
+			{ x: new Date(CGS), y: 69 },
+			{ x: new Date(aaa), y: 65 }
+		]
+	},]
+	
+};
+$("#chartContainer").CanvasJSChart(options);
 
-        var options = {
-          title: 'live score',
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
-        };
+function toogleDataSeries(e){
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	} else{
+		e.dataSeries.visible = true;
+	}
+	e.chart.render();
+}
 
-        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-
-   	
-
-
-    </script>
-	<div id="chart_div" style="width: 100%; height: 500px;"></div>
+}
+</script>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
 <!-- Footer -->
 	<footer class="bg-dark text-white py-3">
