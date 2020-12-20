@@ -84,6 +84,9 @@
           hAxis: {title: 'Team',  titleTextStyle: {color: '#333'}},
           vAxis: {minValue: 0}
         };
+	        backgroundColor: {
+        fill:'red'     
+        },
 	      
         var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
         chart.draw(data, options);
